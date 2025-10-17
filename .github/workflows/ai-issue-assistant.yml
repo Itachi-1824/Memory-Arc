@@ -28,34 +28,38 @@ jobs:
           ISSUE_TITLE="${{ github.event.issue.title }}"
           ISSUE_BODY="${{ github.event.issue.body }}"
           
-          # Limit issue body to 2000 chars
-          ISSUE_BODY_SAMPLE="${ISSUE_BODY:0:2000}"
+          # Gemini 2.0 Flash can handle full issue body (up to 100k chars)
+          ISSUE_BODY_FULL="${ISSUE_BODY:0:100000}"
           
-          PROMPT="Analyze this issue for Memory-Arc Python project.
+          PROMPT="Analyze this issue for Memory-Arc - an intelligent memory management system for AI applications.
 
           Title: ${ISSUE_TITLE}
 
-          Body:
-          ${ISSUE_BODY_SAMPLE}
+          Full Description:
+          ${ISSUE_BODY_FULL}
 
-          Provide:
-          1. Issue type (bug/feature/question/docs)
-          2. Severity (low/medium/high/critical)
-          3. Suggested labels
-          4. Helpful response to user
-          5. Action items for maintainers
+          Provide comprehensive analysis:
+          1. Issue type (bug/feature/enhancement/question/documentation)
+          2. Severity level (low/medium/high/critical) with reasoning
+          3. Affected components (core/adapters/infinite context/workflows/docs)
+          4. Suggested labels for GitHub
+          5. Detailed helpful response to the user
+          6. Technical analysis and potential root cause (for bugs)
+          7. Implementation suggestions (for features)
+          8. Action items for maintainers with priority
+          9. Related issues or dependencies to check
 
-          Be helpful and specific."
+          Be thorough, helpful, and technically accurate."
 
           RESPONSE=$(curl -s -X POST "https://text.pollinations.ai/openai" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
             -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Analysis unavailable"'
           {
-            "model": "gemini",
+            "model": "gemini-2.0-flash-exp",
             "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
             "temperature": 0.4,
-            "max_tokens": 1500
+            "max_tokens": 3000
           }
           EOFCURL
           )

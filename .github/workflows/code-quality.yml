@@ -62,28 +62,52 @@ jobs:
         run: |
           LINT_OUTPUT="${{ steps.results.outputs.output }}"
           
-          PROMPT="Analyze code quality for Memory-Arc Python project.
+          # Gemini 2.0 Flash can handle full linting output
+          LINT_OUTPUT_FULL="${LINT_OUTPUT:0:150000}"
+          
+          PROMPT="Comprehensive code quality analysis for Memory-Arc Python project.
 
-          Linting Results:
-          ${LINT_OUTPUT:0:4000}
+          Complete Linting Results:
+          ${LINT_OUTPUT_FULL}
 
-          Provide quality report:
-          1. Overall Score (1-10)
-          2. Critical issues
-          3. Code style issues
-          4. Recommendations
+          Provide detailed quality report:
+          1. Overall Code Quality Score (1-10) with detailed justification
+          2. Critical Issues (must fix before merge)
+             - Security vulnerabilities
+             - Logic errors
+             - Breaking changes
+          3. High Priority Issues
+             - Code style violations
+             - Complexity issues
+             - Type safety problems
+          4. Medium Priority Issues
+             - Minor style inconsistencies
+             - Documentation gaps
+             - Optimization opportunities
+          5. Code Complexity Analysis
+             - Functions/classes with high cyclomatic complexity
+             - Suggestions for refactoring
+          6. Best Practices Violations
+             - Python idioms not followed
+             - Anti-patterns detected
+          7. Actionable Recommendations
+             - Prioritized list of fixes
+             - Code examples for improvements
+          8. Positive Highlights
+             - Well-written code sections
+             - Good practices observed
 
-          Be specific and actionable."
+          Be thorough, specific with line numbers, and provide actionable guidance."
 
           ANALYSIS=$(curl -s -X POST "https://text.pollinations.ai/openai" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
             -d @- <<EOF | jq -r '.choices[0].message.content // "Analysis unavailable"'
           {
-            "model": "gemini",
+            "model": "gemini-2.0-flash-exp",
             "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
             "temperature": 0.3,
-            "max_tokens": 2000
+            "max_tokens": 4000
           }
           EOF
           )

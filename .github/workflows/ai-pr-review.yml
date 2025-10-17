@@ -47,62 +47,117 @@ jobs:
           FILES="${{ steps.files.outputs.files }}"
           DIFF="${{ steps.diff.outputs.diff }}"
           
-          # Split diff into chunks of 3000 chars each
-          CHUNK_SIZE=3000
+          # Gemini 2.0 Flash supports 1M tokens (~4M chars), use 200k char chunks
+          CHUNK_SIZE=200000
           DIFF_LENGTH=${#DIFF}
-          CHUNK_SUMMARIES=""
           
-          # Process diff in chunks
-          for ((i=0; i<DIFF_LENGTH; i+=CHUNK_SIZE)); do
-            CHUNK="${DIFF:i:CHUNK_SIZE}"
-            
-            CHUNK_PROMPT="Analyze this code diff chunk for Memory-Arc. List key changes and concerns briefly."
-            
-            CHUNK_SUMMARY=$(curl -s -X POST "https://text.pollinations.ai/openai" \
-              -H "Content-Type: application/json" \
-              -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-              -d @- <<EOFCURL | jq -r '.choices[0].message.content // ""'
-            {
-              "model": "gemini",
-              "messages": [{"role": "user", "content": $(echo "${CHUNK_PROMPT}\n\n${CHUNK}" | jq -Rs .)}],
-              "temperature": 0.3,
-              "max_tokens": 500
-            }
-            EOFCURL
-            )
-            
-            CHUNK_SUMMARIES="${CHUNK_SUMMARIES}\n\n--- Chunk $((i/CHUNK_SIZE + 1)) ---\n${CHUNK_SUMMARY}"
-          done
-          
-          # Generate final summary from all chunks
-          FINAL_PROMPT="Based on these chunk analyses, provide final PR review:
+          # If diff is small enough, process in one go
+          if [ $DIFF_LENGTH -le $CHUNK_SIZE ]; then
+            PROMPT="Review this PR for Memory-Arc project.
 
           Changed files:
           ${FILES}
 
-          Chunk analyses:
+          Full diff:
+          ${DIFF}
+
+          Provide comprehensive review:
+          1. Overall summary of changes
+          2. Code quality score (1-10) with justification
+          3. Security concerns (if any)
+          4. Performance implications
+          5. Breaking changes (if any)
+          6. Specific issues with line references
+          7. Recommendations for improvement
+
+          Be thorough, specific, and actionable."
+
+            REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
+              -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
+            {
+              "model": "gemini-2.0-flash-exp",
+              "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
+              "temperature": 0.3,
+              "max_tokens": 4000
+            }
+            EOFCURL
+            )
+          else
+            # For large diffs, process in chunks with context passing
+            CHUNK_SUMMARIES=""
+            PREVIOUS_CONTEXT=""
+            CHUNK_NUM=0
+            
+            for ((i=0; i<DIFF_LENGTH; i+=CHUNK_SIZE)); do
+              CHUNK="${DIFF:i:CHUNK_SIZE}"
+              CHUNK_NUM=$((CHUNK_NUM + 1))
+              
+              CHUNK_PROMPT="You are reviewing chunk ${CHUNK_NUM} of a large PR for Memory-Arc.
+
+          ${PREVIOUS_CONTEXT}
+
+          Current chunk:
+          ${CHUNK}
+
+          Analyze this chunk:
+          1. Key changes and their purpose
+          2. Code quality issues
+          3. Security/performance concerns
+          4. How it relates to previous chunks
+
+          Provide a concise summary that will help analyze the next chunk."
+
+              CHUNK_SUMMARY=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+                -H "Content-Type: application/json" \
+                -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
+                -d @- <<EOFCURL | jq -r '.choices[0].message.content // ""'
+              {
+                "model": "gemini-2.0-flash-exp",
+                "messages": [{"role": "user", "content": $(echo "$CHUNK_PROMPT" | jq -Rs .)}],
+                "temperature": 0.3,
+                "max_tokens": 2000
+              }
+              EOFCURL
+              )
+              
+              CHUNK_SUMMARIES="${CHUNK_SUMMARIES}\n\n=== Chunk ${CHUNK_NUM} Analysis ===\n${CHUNK_SUMMARY}"
+              PREVIOUS_CONTEXT="Previous chunks summary: ${CHUNK_SUMMARY:0:1000}"
+            done
+            
+            # Generate final comprehensive review
+            FINAL_PROMPT="Synthesize final PR review for Memory-Arc from chunk analyses.
+
+          Changed files:
+          ${FILES}
+
+          All chunk analyses:
           ${CHUNK_SUMMARIES}
 
-          Provide:
-          1. Overall summary
-          2. Code quality score (1-10)
-          3. Key issues found
-          4. Recommendations
+          Provide comprehensive final review:
+          1. Overall summary of all changes
+          2. Code quality score (1-10) with justification
+          3. Critical issues found across all chunks
+          4. Security and performance implications
+          5. Breaking changes
+          6. Actionable recommendations
 
-          Be concise and actionable."
+          Be thorough and specific."
 
-          REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-            -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
-          {
-            "model": "gemini",
-            "messages": [{"role": "user", "content": $(echo "$FINAL_PROMPT" | jq -Rs .)}],
-            "temperature": 0.3,
-            "max_tokens": 2000
-          }
-          EOFCURL
-          )
+            REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
+              -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
+            {
+              "model": "gemini-2.0-flash-exp",
+              "messages": [{"role": "user", "content": $(echo "$FINAL_PROMPT" | jq -Rs .)}],
+              "temperature": 0.3,
+              "max_tokens": 4000
+            }
+            EOFCURL
+            )
+          fi
 
           echo "review<<EOFMARKER" >> $GITHUB_OUTPUT
           echo "$REVIEW" >> $GITHUB_OUTPUT
