@@ -52,8 +52,9 @@ jobs:
       - name: AI Quality Analysis
         id: analysis
         run: |
-          # Read lint output from file
-          LINT_OUTPUT=$(cat lint_output.txt | head -c 128000)
+          # Read lint output from file (use head directly to avoid broken pipe)
+          head -c 128000 lint_output.txt > lint_sample.txt
+          LINT_OUTPUT=$(cat lint_sample.txt)
           
           # Create prompt file
           cat > prompt.txt << 'PROMPTEOF'
