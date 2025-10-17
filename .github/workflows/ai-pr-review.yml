@@ -43,30 +43,32 @@ jobs:
           
           # If diff is small enough, process in one go
           if [ $DIFF_SIZE -le $CHUNK_SIZE ]; then
-            cat > prompt.txt <<'PROMPTEOF'
-Review this PR for Memory-Arc project. Be concise but thorough.
-
-Changed files:
-PROMPTEOF
+            cat > prompt.txt << 'PROMPTEOF'
+          Review this PR for Memory-Arc project. Be concise but thorough.
+          
+          Changed files:
+          PROMPTEOF
+            
             cat changed_files.txt >> prompt.txt
             
-            cat >> prompt.txt <<'PROMPTEOF'
-
-Full diff:
-PROMPTEOF
+            cat >> prompt.txt << 'PROMPTEOF'
+          
+          Full diff:
+          PROMPTEOF
+            
             cat pr_diff.txt >> prompt.txt
             
-            cat >> prompt.txt <<'PROMPTEOF'
-
-Provide a balanced review (not too long, not too short):
-1. Summary: What changed and why (2-3 sentences)
-2. Quality Score: X/10 with brief reason
-3. Key Issues: List critical problems only (if any)
-4. Recommendations: Top 3 actionable improvements
-
-Keep it simple, clear, and focused on what matters most.
-PROMPTEOF
-
+            cat >> prompt.txt << 'PROMPTEOF'
+          
+          Provide a balanced review (not too long, not too short):
+          1. Summary: What changed and why (2-3 sentences)
+          2. Quality Score: X/10 with brief reason
+          3. Key Issues: List critical problems only (if any)
+          4. Recommendations: Top 3 actionable improvements
+          
+          Keep it simple, clear, and focused on what matters most.
+          PROMPTEOF
+          
             jq -n \
               --arg model "gemini" \
               --arg content "$(cat prompt.txt)" \
@@ -76,7 +78,7 @@ PROMPTEOF
                 temperature: 0.3,
                 max_tokens: 1500
               }' > payload.json
-
+          
             curl -s -X POST "https://text.pollinations.ai/openai" \
               -H "Content-Type: application/json" \
               -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
@@ -93,10 +95,10 @@ PROMPTEOF
             for chunk_file in chunk_*; do
               CHUNK_NUM=$((CHUNK_NUM + 1))
               
-              cat > chunk_prompt.txt <<'PROMPTEOF'
-Analyzing chunk of large PR for Memory-Arc. Be brief.
-
-PROMPTEOF
+              cat > chunk_prompt.txt << 'PROMPTEOF'
+          Analyzing chunk of large PR for Memory-Arc. Be brief.
+          
+          PROMPTEOF
               
               if [ -s previous_context.txt ]; then
                 echo "Previous context:" >> chunk_prompt.txt
@@ -107,16 +109,16 @@ PROMPTEOF
               echo "Current chunk:" >> chunk_prompt.txt
               cat "$chunk_file" >> chunk_prompt.txt
               
-              cat >> chunk_prompt.txt <<'PROMPTEOF'
-
-List:
-1. Main changes
-2. Issues found
-3. Connection to previous chunks
-
-Keep it short - this feeds into final review.
-PROMPTEOF
-
+              cat >> chunk_prompt.txt << 'PROMPTEOF'
+          
+          List:
+          1. Main changes
+          2. Issues found
+          3. Connection to previous chunks
+          
+          Keep it short - this feeds into final review.
+          PROMPTEOF
+          
               jq -n \
                 --arg model "gemini" \
                 --arg content "$(cat chunk_prompt.txt)" \
@@ -126,7 +128,7 @@ PROMPTEOF
                   temperature: 0.3,
                   max_tokens: 800
                 }' > chunk_payload.json
-
+          
               CHUNK_SUMMARY=$(curl -s -X POST "https://text.pollinations.ai/openai" \
                 -H "Content-Type: application/json" \
                 -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
@@ -141,30 +143,32 @@ PROMPTEOF
             done
             
             # Generate final review
-            cat > final_prompt.txt <<'PROMPTEOF'
-Create final PR review for Memory-Arc from chunk analyses. Be concise but complete.
-
-Changed files:
-PROMPTEOF
+            cat > final_prompt.txt << 'PROMPTEOF'
+          Create final PR review for Memory-Arc from chunk analyses. Be concise but complete.
+          
+          Changed files:
+          PROMPTEOF
+            
             cat changed_files.txt >> final_prompt.txt
             
-            cat >> final_prompt.txt <<'PROMPTEOF'
-
-Chunk analyses:
-PROMPTEOF
+            cat >> final_prompt.txt << 'PROMPTEOF'
+          
+          Chunk analyses:
+          PROMPTEOF
+            
             cat chunk_summaries.txt >> final_prompt.txt
             
-            cat >> final_prompt.txt <<'PROMPTEOF'
-
-Provide balanced final review:
-1. Summary: Overall changes (2-3 sentences)
-2. Quality Score: X/10 with reason
-3. Critical Issues: Main problems found
-4. Recommendations: Top 3-5 improvements
-
-Be clear, specific, and actionable. Not too verbose.
-PROMPTEOF
-
+            cat >> final_prompt.txt << 'PROMPTEOF'
+          
+          Provide balanced final review:
+          1. Summary: Overall changes (2-3 sentences)
+          2. Quality Score: X/10 with reason
+          3. Critical Issues: Main problems found
+          4. Recommendations: Top 3-5 improvements
+          
+          Be clear, specific, and actionable. Not too verbose.
+          PROMPTEOF
+          
             jq -n \
               --arg model "gemini" \
               --arg content "$(cat final_prompt.txt)" \
@@ -174,13 +178,13 @@ PROMPTEOF
                 temperature: 0.3,
                 max_tokens: 2000
               }' > final_payload.json
-
+          
             curl -s -X POST "https://text.pollinations.ai/openai" \
               -H "Content-Type: application/json" \
               -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
               -d @final_payload.json | jq -r '.choices[0].message.content // "Review unavailable"' > review.txt
           fi
-
+          
           echo "review<<EOFMARKER" >> $GITHUB_OUTPUT
           cat review.txt >> $GITHUB_OUTPUT
           echo "EOFMARKER" >> $GITHUB_OUTPUT
