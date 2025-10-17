@@ -1,0 +1,321 @@
+ shell: /usr/bin/bash -e {0}
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +The: command not found
+diff: unrecognized option '--git'
+diff: Try 'diff --help' for more information.
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: new: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: index: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: ---: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +++: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1099: @@: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1100: +#: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1101: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1102: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1103: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1104: +The: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1105: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1106: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1107: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1108: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1109: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1110: +The: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1111: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1112: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1112: `+- **Semantic Score**: Similarity between query and memory content (from retrieval strategies)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +This: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1099: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1099: `+Memories with higher importance (0-10 scale) receive proportional boosts:'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1091: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1091: `+Critical memories (importance=10) get maximum boost, while routine memories (importance=5) get moderate boost.'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +4.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +Each: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1093: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1093: `+- **Time Complexity**: O(n²) for redundancy penalization, O(n log n) for sorting'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +For: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +For: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +To: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +To: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +Comprehensive: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +1.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +2.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +3.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +4.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +5.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +6.: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1099: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1100: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1101: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1102: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1103: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1104: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1105: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1106: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1107: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1108: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1109: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+diff: unrecognized option '--git'
+diff: Try 'diff --help' for more information.
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: new: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: index: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: ---: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +++: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: @@: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +#: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1099: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1100: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1100: `+The AST Diff Engine provides structural code analysis and diff generation using Abstract Syntax Trees (AST). It supports Python, JavaScript, and TypeScript.'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: Memory-Arc/: No such file or directory
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: -├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: -└──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1099: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1100: +│: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1101: +│: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1102: +│: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1103: +│: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1104: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1105: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1106: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1107: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1108: +├──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1109: +└──: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: adapters/: Is a directory
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: AIAdapter: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: AdapterRegistry: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: core/infinite/: Is a directory
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: website/: Is a directory
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: setup.bat: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: start.bat: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: -: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: -: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1094: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1094: `@@ -87,7 +139,9 @@ memory = MemoryManager(context_id="assistant_123", config=config)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: directory: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: --: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: -: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: -: command not found
+diff: unrecognized option '--git'
+diff: Try 'diff --help' for more information.
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1100: index: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1101: ---: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1102: +++: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1103: @@: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1104: run:: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1105: ${{ github.event.issue.title }}: bad substitution
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1106: ${{ github.event.issue.body }}: bad substitution
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: syntax error near unexpected token `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: `) - document store, vector store, temporal indexing, retrieval orchestrator'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: syntax error near unexpected token `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: ` to relative imports)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: syntax error near unexpected token `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: syntax error near unexpected token `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: syntax error near unexpected token `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1089: `)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: and: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: imports: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1099: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1100: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1101: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: ,: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: ,: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: ,: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: -: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: ,: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: -: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +Pollinations: command not found
+diff: unrecognized option '--git'
+diff: Try 'diff --help' for more information.
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: index: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: ---: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +++: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: @@: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1156: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1156: `+    """Adapter for Pollinations AI API (OpenAI-compatible format)."""'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1090: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1090: `+- Configurable half-life (default: 7 days)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +####: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1095: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1095: `+- Configurable threshold (default: 0.85)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +Enhanced: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: class:: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: parameter: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: parameter: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: method: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1091: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1091: `+- Backward compatible (can disable adaptive ranking)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1098: +Updated: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: to: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: class: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +-: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1094: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1095: +###: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1096: +**Decision**:: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1097: +**Rationale**:: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1098: syntax error near unexpected token `('
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: command substitution: line 1098: `+- Much faster (no embedding computation needed)'
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1090: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1091: +##: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1092: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1093: +: command not found
+/home/runner/work/_temp/737d08b3-ad3e-4520-be16-49eec5585a1b.sh: line 1089: are: command not found
+Error: Process completed with exit code 127.

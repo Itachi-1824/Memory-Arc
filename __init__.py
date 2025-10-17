@@ -13,12 +13,12 @@ Features:
 """
 
 # Core components
-from memory_system.core.models import MemoryEntry
-from memory_system.core.memory_manager import MemoryManager
-from memory_system.core.vector_memory import VectorMemoryManager
+from core.models import MemoryEntry
+from core.memory_manager import MemoryManager
+from core.vector_memory import VectorMemoryManager
 
 # Processor interfaces and implementations
-from memory_system.core.processors import (
+from core.processors import (
     MemoryProcessor,
     ProcessingMetrics,
     AIProcessor,
@@ -28,18 +28,18 @@ from memory_system.core.processors import (
 )
 
 # Configuration classes
-from memory_system.config import (
+from config import (
     MemoryConfig,
     HeuristicConfig,
     HybridConfig,
 )
 
 # Presets
-from memory_system.presets import ConfigPresets
+from presets import ConfigPresets
 
 # Adapter interfaces and registry
-from memory_system.adapters.ai_adapter import AIAdapter
-from memory_system.adapters.registry import AdapterRegistry, AdapterNotFoundError
+from adapters.ai_adapter import AIAdapter
+from adapters.registry import AdapterRegistry, AdapterNotFoundError
 
 __version__ = "0.1.0"
 

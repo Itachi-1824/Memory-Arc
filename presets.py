@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from memory_system.config import MemoryConfig, HeuristicConfig, HybridConfig
+from config import MemoryConfig, HeuristicConfig, HybridConfig
 
 
 class ConfigPresets:

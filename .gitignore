@@ -32,6 +32,7 @@ venv.bak/
 
 # IDE
 .vscode/
+.kiro/
 .idea/
 *.swp
 *.swo
@@ -73,13 +74,10 @@ coverage.xml
 *.tmp
 *.temp
 test_write.txt
-write_*.py
-demo_*.py
-verify_*.py
-test_*.py
-example_*.py
-example_*.json
-example_*.yaml
+
+# Website specific
+website/venv/
+website/data/
 
 # Vector DB
 vector_db/

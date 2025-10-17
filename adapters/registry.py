@@ -49,6 +49,7 @@ class AdapterRegistry:
         "anthropic": ("adapters.anthropic", "AnthropicAdapter"),
         "ollama": ("adapters.ollama", "OllamaAdapter"),
         "huggingface": ("adapters.huggingface", "HuggingFaceAdapter"),
+        "pollinations": ("adapters.pollinations_adapter", "PollinationsAdapter"),
     }
     
     # Cache for loaded built-in adapters

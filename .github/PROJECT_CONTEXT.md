@@ -5,22 +5,29 @@ Memory-Arc is an intelligent memory management system for AI applications. It pr
 
 ## Core Features
 - **4 Processing Modes**: AI, Heuristic, Hybrid, Disabled
-- **Pluggable AI Adapters**: OpenAI, Anthropic, Ollama, HuggingFace, Custom
+- **Pluggable AI Adapters**: OpenAI, Anthropic, Ollama, HuggingFace, Pollinations, Custom
 - **3 Embedding Models**: Default (all-MiniLM-L6-v2), Enhanced (BAAI/bge-m3), Code (jina-embeddings-v2-base-code)
 - **6 Built-in Presets**: chatbot, chatbot-enhanced, coding-agent, coding-agent-enhanced, assistant, offline
+- **Infinite Context System**: Unlimited memory with versioning, code tracking, intelligent retrieval
 - **Vector Storage**: Qdrant for semantic search
 - **Cost Optimization**: Caching, rate limiting, hybrid mode
+- **Web Interface**: Test chat interface with live metrics and memory visualization
 
 ## Architecture
 ```
 Memory-Arc/
-├── adapters/       # AI adapter implementations (OpenAI, Anthropic, etc.)
-├── core/           # Core memory system (memory_manager, processors, vector_memory)
-├── examples/       # Usage examples
-├── tests/          # Test suite
-├── utils/          # Utilities (model_manager)
-├── config.py       # Configuration system
-└── presets.py      # Built-in presets
+├── adapters/           # AI adapter implementations (OpenAI, Anthropic, Pollinations, etc.)
+├── core/
+│   ├── infinite/       # Infinite context system (document store, vector store, retrieval)
+│   ├── memory_manager.py
+│   ├── processors.py
+│   └── vector_memory.py
+├── website/            # Web chat interface for testing
+├── examples/           # Usage examples
+├── tests/              # Test suite
+├── utils/              # Utilities (model_manager)
+├── config.py           # Configuration system
+└── presets.py          # Built-in presets
 ```
 
 ## Key Components
@@ -44,14 +51,31 @@ Memory-Arc/
 
 ### 4. AI Adapters (`adapters/`)
 - Abstract base: `AIAdapter` interface
-- Built-in: OpenAI, Anthropic, Ollama, HuggingFace
+- Built-in: OpenAI, Anthropic, Ollama, HuggingFace, Pollinations
 - Registry: `AdapterRegistry` for discovery and instantiation
 - Custom adapters supported
 
-### 5. Embedding Models
+### 5. Infinite Context System (`core/infinite/`)
+- **DocumentStore**: SQLite-based storage for all memories
+- **VectorStore**: Qdrant for semantic embeddings
+- **TemporalIndex**: Time-based memory queries
+- **DynamicMemoryStore**: Memory versioning and evolution
+- **RetrievalOrchestrator**: Multi-strategy intelligent retrieval
+- **ChunkManager**: Automatic content chunking for any model
+- **CodeChangeTracker**: Track code changes with AST diffs (optional)
+
+### 6. Embedding Models
 - **Default**: all-MiniLM-L6-v2 (80MB, 384 dim, included)
 - **Enhanced**: BAAI/bge-m3 (2.2GB, 1024 dim, auto-download)
 - **Code**: jinaai/jina-embeddings-v2-base-code (500MB, 768 dim, auto-download)
+
+### 7. Web Interface (`website/`)
+- Flask-based test interface
+- Real-time chat with Pollinations AI
+- Live metrics dashboard
+- Memory retrieval visualization
+- Persistent storage across restarts
+- Easy setup with `setup.bat` and `start.bat`
 
 ## Common Use Cases
 
@@ -73,6 +97,34 @@ config = MemoryConfig.from_preset("assistant")
 memory = MemoryManager(context_id="assistant_123", config=config)
 ```
 
+### Infinite Context Chat
+```python
+from core.infinite import InfiniteContextEngine, InfiniteContextConfig
+
+config = InfiniteContextConfig(
+    storage_path="./data/chat",
+    enable_caching=True,
+    model_name="gemini"
+)
+
+engine = InfiniteContextEngine(config=config, embedding_fn=your_embedding_fn)
+await engine.initialize()
+
+# Add memory
+await engine.add_memory(content="Hello!", memory_type=MemoryType.CONVERSATION)
+
+# Retrieve with semantic search
+result = await engine.retrieve(query="greeting", max_results=10)
+```
+
+### Web Interface Testing
+```bash
+cd website
+setup.bat          # First time setup
+start.bat          # Start server
+# Open index.html in browser
+```
+
 ## Code Style
 - Python 3.8+
 - Type hints throughout
@@ -87,7 +139,9 @@ memory = MemoryManager(context_id="assistant_123", config=config)
 - Examples in `examples/` directory
 
 ## Dependencies
-- **Core**: qdrant-client, sentence-transformers, pyyaml
+- **Core**: qdrant-client, sentence-transformers, pyyaml, python-dotenv
+- **Infinite Context**: lmdb, watchdog, tree-sitter, zstandard
+- **Web Interface**: flask, flask-cors, requests
 - **Optional AI**: openai, anthropic, ollama, huggingface-hub
 - **Optional Heuristics**: keybert, spacy
 

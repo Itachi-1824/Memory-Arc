@@ -37,6 +37,13 @@ setup(
         "sentence-transformers>=2.2.0",  # Includes all-MiniLM-L6-v2 by default
         "pyyaml>=6.0.0",
         "python-dotenv>=1.0.0",
+        # Infinite Context System dependencies
+        "lmdb>=1.4.0",
+        "watchdog>=3.0.0",
+        "tree-sitter>=0.20.0",
+        "tree-sitter-python>=0.20.0",
+        "tree-sitter-javascript>=0.20.0",
+        "zstandard>=0.19.0",
     ],
     extras_require={
         "ai": [
