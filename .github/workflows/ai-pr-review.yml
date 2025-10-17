@@ -28,153 +28,176 @@ jobs:
         id: diff
         run: |
           git fetch origin ${{ github.base_ref }}
-          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD)
-          echo "diff<<EOF" >> $GITHUB_OUTPUT
-          echo "$DIFF" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          git diff origin/${{ github.base_ref }}...HEAD > pr_diff.txt
 
       - name: Get changed files
         id: files
         run: |
-          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | head -20)
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          echo "$FILES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | head -50 > changed_files.txt
 
       - name: AI Code Review
         id: review
         run: |
-          FILES="${{ steps.files.outputs.files }}"
-          DIFF="${{ steps.diff.outputs.diff }}"
-          
-          # Gemini 2.0 Flash supports 1M tokens (~4M chars), use 200k char chunks
-          CHUNK_SIZE=200000
-          DIFF_LENGTH=${#DIFF}
+          DIFF_SIZE=$(wc -c < pr_diff.txt)
+          CHUNK_SIZE=128000
           
           # If diff is small enough, process in one go
-          if [ $DIFF_LENGTH -le $CHUNK_SIZE ]; then
-            PROMPT="Review this PR for Memory-Arc project.
+          if [ $DIFF_SIZE -le $CHUNK_SIZE ]; then
+            cat > prompt.txt <<'PROMPTEOF'
+Review this PR for Memory-Arc project. Be concise but thorough.
 
-          Changed files:
-          ${FILES}
+Changed files:
+PROMPTEOF
+            cat changed_files.txt >> prompt.txt
+            
+            cat >> prompt.txt <<'PROMPTEOF'
 
-          Full diff:
-          ${DIFF}
+Full diff:
+PROMPTEOF
+            cat pr_diff.txt >> prompt.txt
+            
+            cat >> prompt.txt <<'PROMPTEOF'
 
-          Provide comprehensive review:
-          1. Overall summary of changes
-          2. Code quality score (1-10) with justification
-          3. Security concerns (if any)
-          4. Performance implications
-          5. Breaking changes (if any)
-          6. Specific issues with line references
-          7. Recommendations for improvement
+Provide a balanced review (not too long, not too short):
+1. Summary: What changed and why (2-3 sentences)
+2. Quality Score: X/10 with brief reason
+3. Key Issues: List critical problems only (if any)
+4. Recommendations: Top 3 actionable improvements
 
-          Be thorough, specific, and actionable."
+Keep it simple, clear, and focused on what matters most.
+PROMPTEOF
 
-            REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+            jq -n \
+              --arg model "gemini" \
+              --arg content "$(cat prompt.txt)" \
+              '{
+                model: $model,
+                messages: [{role: "user", content: $content}],
+                temperature: 0.3,
+                max_tokens: 1500
+              }' > payload.json
+
+            curl -s -X POST "https://text.pollinations.ai/openai" \
               -H "Content-Type: application/json" \
               -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-              -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
-            {
-              "model": "gemini-2.0-flash-exp",
-              "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
-              "temperature": 0.3,
-              "max_tokens": 4000
-            }
-            EOFCURL
-            )
+              -d @payload.json | jq -r '.choices[0].message.content // "Review unavailable"' > review.txt
           else
             # For large diffs, process in chunks with context passing
-            CHUNK_SUMMARIES=""
-            PREVIOUS_CONTEXT=""
+            echo "" > chunk_summaries.txt
+            echo "" > previous_context.txt
             CHUNK_NUM=0
             
-            for ((i=0; i<DIFF_LENGTH; i+=CHUNK_SIZE)); do
-              CHUNK="${DIFF:i:CHUNK_SIZE}"
+            # Split diff into chunks
+            split -b $CHUNK_SIZE pr_diff.txt chunk_
+            
+            for chunk_file in chunk_*; do
               CHUNK_NUM=$((CHUNK_NUM + 1))
               
-              CHUNK_PROMPT="You are reviewing chunk ${CHUNK_NUM} of a large PR for Memory-Arc.
+              cat > chunk_prompt.txt <<'PROMPTEOF'
+Analyzing chunk of large PR for Memory-Arc. Be brief.
 
-          ${PREVIOUS_CONTEXT}
+PROMPTEOF
+              
+              if [ -s previous_context.txt ]; then
+                echo "Previous context:" >> chunk_prompt.txt
+                cat previous_context.txt >> chunk_prompt.txt
+                echo "" >> chunk_prompt.txt
+              fi
+              
+              echo "Current chunk:" >> chunk_prompt.txt
+              cat "$chunk_file" >> chunk_prompt.txt
+              
+              cat >> chunk_prompt.txt <<'PROMPTEOF'
 
-          Current chunk:
-          ${CHUNK}
+List:
+1. Main changes
+2. Issues found
+3. Connection to previous chunks
 
-          Analyze this chunk:
-          1. Key changes and their purpose
-          2. Code quality issues
-          3. Security/performance concerns
-          4. How it relates to previous chunks
+Keep it short - this feeds into final review.
+PROMPTEOF
 
-          Provide a concise summary that will help analyze the next chunk."
+              jq -n \
+                --arg model "gemini" \
+                --arg content "$(cat chunk_prompt.txt)" \
+                '{
+                  model: $model,
+                  messages: [{role: "user", content: $content}],
+                  temperature: 0.3,
+                  max_tokens: 800
+                }' > chunk_payload.json
 
               CHUNK_SUMMARY=$(curl -s -X POST "https://text.pollinations.ai/openai" \
                 -H "Content-Type: application/json" \
                 -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-                -d @- <<EOFCURL | jq -r '.choices[0].message.content // ""'
-              {
-                "model": "gemini-2.0-flash-exp",
-                "messages": [{"role": "user", "content": $(echo "$CHUNK_PROMPT" | jq -Rs .)}],
-                "temperature": 0.3,
-                "max_tokens": 2000
-              }
-              EOFCURL
-              )
+                -d @chunk_payload.json | jq -r '.choices[0].message.content // ""')
               
-              CHUNK_SUMMARIES="${CHUNK_SUMMARIES}\n\n=== Chunk ${CHUNK_NUM} Analysis ===\n${CHUNK_SUMMARY}"
-              PREVIOUS_CONTEXT="Previous chunks summary: ${CHUNK_SUMMARY:0:1000}"
+              echo "=== Chunk ${CHUNK_NUM} ===" >> chunk_summaries.txt
+              echo "$CHUNK_SUMMARY" >> chunk_summaries.txt
+              echo "" >> chunk_summaries.txt
+              
+              # Save context for next chunk
+              echo "$CHUNK_SUMMARY" | head -c 800 > previous_context.txt
             done
             
-            # Generate final comprehensive review
-            FINAL_PROMPT="Synthesize final PR review for Memory-Arc from chunk analyses.
+            # Generate final review
+            cat > final_prompt.txt <<'PROMPTEOF'
+Create final PR review for Memory-Arc from chunk analyses. Be concise but complete.
 
-          Changed files:
-          ${FILES}
+Changed files:
+PROMPTEOF
+            cat changed_files.txt >> final_prompt.txt
+            
+            cat >> final_prompt.txt <<'PROMPTEOF'
 
-          All chunk analyses:
-          ${CHUNK_SUMMARIES}
+Chunk analyses:
+PROMPTEOF
+            cat chunk_summaries.txt >> final_prompt.txt
+            
+            cat >> final_prompt.txt <<'PROMPTEOF'
 
-          Provide comprehensive final review:
-          1. Overall summary of all changes
-          2. Code quality score (1-10) with justification
-          3. Critical issues found across all chunks
-          4. Security and performance implications
-          5. Breaking changes
-          6. Actionable recommendations
+Provide balanced final review:
+1. Summary: Overall changes (2-3 sentences)
+2. Quality Score: X/10 with reason
+3. Critical Issues: Main problems found
+4. Recommendations: Top 3-5 improvements
 
-          Be thorough and specific."
+Be clear, specific, and actionable. Not too verbose.
+PROMPTEOF
 
-            REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+            jq -n \
+              --arg model "gemini" \
+              --arg content "$(cat final_prompt.txt)" \
+              '{
+                model: $model,
+                messages: [{role: "user", content: $content}],
+                temperature: 0.3,
+                max_tokens: 2000
+              }' > final_payload.json
+
+            curl -s -X POST "https://text.pollinations.ai/openai" \
               -H "Content-Type: application/json" \
               -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-              -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
-            {
-              "model": "gemini-2.0-flash-exp",
-              "messages": [{"role": "user", "content": $(echo "$FINAL_PROMPT" | jq -Rs .)}],
-              "temperature": 0.3,
-              "max_tokens": 4000
-            }
-            EOFCURL
-            )
+              -d @final_payload.json | jq -r '.choices[0].message.content // "Review unavailable"' > review.txt
           fi
 
           echo "review<<EOFMARKER" >> $GITHUB_OUTPUT
-          echo "$REVIEW" >> $GITHUB_OUTPUT
+          cat review.txt >> $GITHUB_OUTPUT
           echo "EOFMARKER" >> $GITHUB_OUTPUT
 
       - name: Post AI Review
         uses: actions/github-script@v6
         with:
           script: |
-            const reviewText = process.env.REVIEW_TEXT;
+            const fs = require('fs');
+            const reviewText = fs.readFileSync('review.txt', 'utf8');
             
             const review = `## 🤖 AI Code Review
 
             ${reviewText}
 
             ---
-            *This review was generated by AI. Please use human judgment for final decisions.*
+            *Generated by AI (Gemini). Use human judgment for final decisions.*
             `;
 
             await github.rest.issues.createComment({
@@ -183,5 +206,3 @@ jobs:
               repo: context.repo.repo,
               body: review
             });
-        env:
-          REVIEW_TEXT: ${{ steps.review.outputs.review }}
