@@ -58,10 +58,10 @@ def test_main_package_exports():
     
     # Test individual imports
     try:
-        from memory_system.core.models import MemoryEntry
-        from memory_system.core.memory_manager import MemoryManager
-        from memory_system.core.vector_memory import VectorMemoryManager
-        from memory_system.core.processors import (
+        from core.models import MemoryEntry
+        from core.memory_manager import MemoryManager
+        from core.vector_memory import VectorMemoryManager
+        from core.processors import (
             MemoryProcessor,
             ProcessingMetrics,
             AIProcessor,
@@ -69,14 +69,14 @@ def test_main_package_exports():
             HybridProcessor,
             DisabledProcessor,
         )
-        from memory_system.config import (
+        from config import (
             MemoryConfig,
             HeuristicConfig,
             HybridConfig,
         )
-        from memory_system.presets import ConfigPresets
-        from memory_system.adapters.ai_adapter import AIAdapter
-        from memory_system.adapters.registry import AdapterRegistry, AdapterNotFoundError
+        from presets import ConfigPresets
+        from adapters.ai_adapter import AIAdapter
+        from adapters.registry import AdapterRegistry, AdapterNotFoundError
         
         print("✓ All main package exports successful")
         

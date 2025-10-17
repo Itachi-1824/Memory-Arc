@@ -27,40 +27,42 @@ jobs:
         run: |
           ISSUE_TITLE="${{ github.event.issue.title }}"
           ISSUE_BODY="${{ github.event.issue.body }}"
-          PROJECT_CONTEXT=$(cat .github/PROJECT_CONTEXT.md)
           
-          PROMPT="You are a helpful assistant for Memory-Arc, a Python memory management system for AI applications.
+          # Limit issue body to 2000 chars
+          ISSUE_BODY_SAMPLE="${ISSUE_BODY:0:2000}"
+          
+          PROMPT="Analyze this issue for Memory-Arc Python project.
 
-          PROJECT CONTEXT:
-          $PROJECT_CONTEXT
+          Title: ${ISSUE_TITLE}
 
-          A user has opened an issue. Analyze it and provide:
-          1. **Issue Type**: Bug, Feature Request, Question, or Documentation
-          2. **Severity**: Low, Medium, High, Critical
-          3. **Suggested Labels**: Recommend 2-3 labels
-          4. **Initial Response**: Helpful response to the user
-          5. **Action Items**: What maintainers should do
+          Body:
+          ${ISSUE_BODY_SAMPLE}
 
-          Issue Title: $ISSUE_TITLE
+          Provide:
+          1. Issue type (bug/feature/question/docs)
+          2. Severity (low/medium/high/critical)
+          3. Suggested labels
+          4. Helpful response to user
+          5. Action items for maintainers
 
-          Issue Body:
-          $ISSUE_BODY
-
-          Provide a structured response in markdown."
+          Be helpful and specific."
 
           RESPONSE=$(curl -s -X POST "https://text.pollinations.ai/openai" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-            -d "{
-              \"model\": \"gemini\",
-              \"messages\": [{\"role\": \"user\", \"content\": $(echo "$PROMPT" | jq -Rs .)}],
-              \"temperature\": 0.4,
-              \"max_tokens\": 1000
-            }" | jq -r '.choices[0].message.content')
+            -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Analysis unavailable"'
+          {
+            "model": "gemini",
+            "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
+            "temperature": 0.4,
+            "max_tokens": 1500
+          }
+          EOFCURL
+          )
 
-          echo "response<<EOF" >> $GITHUB_OUTPUT
+          echo "response<<EOFMARKER" >> $GITHUB_OUTPUT
           echo "$RESPONSE" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "EOFMARKER" >> $GITHUB_OUTPUT
 
       - name: Post AI Analysis
         uses: actions/github-script@v6

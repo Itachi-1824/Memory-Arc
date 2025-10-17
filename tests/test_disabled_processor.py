@@ -7,7 +7,7 @@ import os
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
-from memory_system.core.processors import DisabledProcessor
+from core.processors import DisabledProcessor
 
 
 async def test_disabled_processor():

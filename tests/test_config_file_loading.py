@@ -4,7 +4,7 @@ import json
 import os
 import tempfile
 import pytest
-from memory_system.config import MemoryConfig, HeuristicConfig, HybridConfig
+from config import MemoryConfig, HeuristicConfig, HybridConfig
 
 
 def test_from_file_json():

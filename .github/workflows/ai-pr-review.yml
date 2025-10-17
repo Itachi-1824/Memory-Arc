@@ -44,41 +44,69 @@ jobs:
       - name: AI Code Review
         id: review
         run: |
-          PROJECT_CONTEXT=$(cat .github/PROJECT_CONTEXT.md)
+          FILES="${{ steps.files.outputs.files }}"
+          DIFF="${{ steps.diff.outputs.diff }}"
           
-          PROMPT="You are an expert code reviewer for Memory-Arc, a Python memory management system for AI applications.
-
-          PROJECT CONTEXT:
-          $PROJECT_CONTEXT
-
-          Review this pull request and provide:
-          1. **Summary**: Brief overview of changes
-          2. **Code Quality**: Rate 1-10 and explain
-          3. **Potential Issues**: Security, bugs, performance concerns
-          4. **Suggestions**: Improvements and best practices
-          5. **Testing**: What tests should be added/updated
+          # Split diff into chunks of 3000 chars each
+          CHUNK_SIZE=3000
+          DIFF_LENGTH=${#DIFF}
+          CHUNK_SUMMARIES=""
+          
+          # Process diff in chunks
+          for ((i=0; i<DIFF_LENGTH; i+=CHUNK_SIZE)); do
+            CHUNK="${DIFF:i:CHUNK_SIZE}"
+            
+            CHUNK_PROMPT="Analyze this code diff chunk for Memory-Arc. List key changes and concerns briefly."
+            
+            CHUNK_SUMMARY=$(curl -s -X POST "https://text.pollinations.ai/openai" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
+              -d @- <<EOFCURL | jq -r '.choices[0].message.content // ""'
+            {
+              "model": "gemini",
+              "messages": [{"role": "user", "content": $(echo "${CHUNK_PROMPT}\n\n${CHUNK}" | jq -Rs .)}],
+              "temperature": 0.3,
+              "max_tokens": 500
+            }
+            EOFCURL
+            )
+            
+            CHUNK_SUMMARIES="${CHUNK_SUMMARIES}\n\n--- Chunk $((i/CHUNK_SIZE + 1)) ---\n${CHUNK_SUMMARY}"
+          done
+          
+          # Generate final summary from all chunks
+          FINAL_PROMPT="Based on these chunk analyses, provide final PR review:
 
           Changed files:
-          ${{ steps.files.outputs.files }}
+          ${FILES}
 
-          Diff (first 3000 chars):
-          $(echo '${{ steps.diff.outputs.diff }}' | head -c 3000)
+          Chunk analyses:
+          ${CHUNK_SUMMARIES}
 
-          Provide a concise, actionable review in markdown format."
+          Provide:
+          1. Overall summary
+          2. Code quality score (1-10)
+          3. Key issues found
+          4. Recommendations
+
+          Be concise and actionable."
 
           REVIEW=$(curl -s -X POST "https://text.pollinations.ai/openai" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-            -d "{
-              \"model\": \"gemini\",
-              \"messages\": [{\"role\": \"user\", \"content\": $(echo "$PROMPT" | jq -Rs .)}],
-              \"temperature\": 0.3,
-              \"max_tokens\": 1500
-            }" | jq -r '.choices[0].message.content')
+            -d @- <<EOFCURL | jq -r '.choices[0].message.content // "Review unavailable"'
+          {
+            "model": "gemini",
+            "messages": [{"role": "user", "content": $(echo "$FINAL_PROMPT" | jq -Rs .)}],
+            "temperature": 0.3,
+            "max_tokens": 2000
+          }
+          EOFCURL
+          )
 
-          echo "review<<EOF" >> $GITHUB_OUTPUT
+          echo "review<<EOFMARKER" >> $GITHUB_OUTPUT
           echo "$REVIEW" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "EOFMARKER" >> $GITHUB_OUTPUT
 
       - name: Post AI Review
         uses: actions/github-script@v6

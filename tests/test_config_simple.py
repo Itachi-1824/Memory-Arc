@@ -6,7 +6,7 @@ import os
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
-from memory_system.config import MemoryConfig, HeuristicConfig, HybridConfig
+from config import MemoryConfig, HeuristicConfig, HybridConfig
 
 
 def test_config_creation():

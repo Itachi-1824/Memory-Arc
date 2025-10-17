@@ -60,38 +60,37 @@ jobs:
       - name: AI Quality Analysis
         id: analysis
         run: |
-          PROJECT_CONTEXT=$(cat .github/PROJECT_CONTEXT.md)
+          LINT_OUTPUT="${{ steps.results.outputs.output }}"
           
-          PROMPT="You are analyzing code quality for Memory-Arc, a Python memory management system.
-
-          PROJECT CONTEXT:
-          $PROJECT_CONTEXT
+          PROMPT="Analyze code quality for Memory-Arc Python project.
 
           Linting Results:
-          ${{ steps.results.outputs.output }}
+          ${LINT_OUTPUT:0:4000}
 
-          Provide a quality report with:
-          1. **Overall Score**: Rate 1-10
-          2. **Key Issues**: Most important problems to fix
-          3. **Code Style**: Formatting and style issues
-          4. **Complexity**: Any overly complex code
-          5. **Recommendations**: Prioritized action items
+          Provide quality report:
+          1. Overall Score (1-10)
+          2. Critical issues
+          3. Code style issues
+          4. Recommendations
 
-          Be constructive and specific. Use emojis and markdown."
+          Be specific and actionable."
 
           ANALYSIS=$(curl -s -X POST "https://text.pollinations.ai/openai" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.POLLI_TOKEN }}" \
-            -d "{
-              \"model\": \"gemini\",
-              \"messages\": [{\"role\": \"user\", \"content\": $(echo "$PROMPT" | jq -Rs .)}],
-              \"temperature\": 0.3,
-              \"max_tokens\": 1000
-            }" | jq -r '.choices[0].message.content')
+            -d @- <<EOF | jq -r '.choices[0].message.content // "Analysis unavailable"'
+          {
+            "model": "gemini",
+            "messages": [{"role": "user", "content": $(echo "$PROMPT" | jq -Rs .)}],
+            "temperature": 0.3,
+            "max_tokens": 2000
+          }
+          EOF
+          )
 
-          echo "analysis<<EOF" >> $GITHUB_OUTPUT
+          echo "analysis<<EOFMARKER" >> $GITHUB_OUTPUT
           echo "$ANALYSIS" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "EOFMARKER" >> $GITHUB_OUTPUT
 
       - name: Post Quality Report
         if: github.event_name == 'pull_request'
