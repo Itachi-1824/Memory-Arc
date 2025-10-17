@@ -10,7 +10,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue
 from sentence_transformers import SentenceTransformer
 
-from memory_system.config import (
+from config import (
     DEFAULT_EMBEDDING_MODEL,
     DEFAULT_VECTOR_DB_PATH,
     LTM_IMPORTANCE_THRESHOLD,

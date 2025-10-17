@@ -4,10 +4,23 @@ sentence-transformers>=2.2.0
 pyyaml>=6.0.0
 python-dotenv>=1.0.0
 
+# Infinite Context System dependencies
+lmdb>=1.7.0  # Embedding cache
+watchdog>=6.0.0  # File system monitoring
+tree-sitter>=0.25.0  # AST parsing
+tree-sitter-python>=0.25.0  # Python AST support
+tree-sitter-javascript>=0.25.0  # JavaScript AST support
+zstandard>=0.23.0  # Diff compression
+
 # Optional: Enhanced heuristics (not required for basic usage)
 # Uncomment if you want enhanced heuristic features
 # keybert>=0.8.0
 # spacy>=3.7.0
+
+# Optional: Token counting (for accurate model-specific tokenization)
+# Uncomment for enhanced token counting accuracy
+# tiktoken>=0.5.0  # For GPT models
+# transformers>=4.30.0  # For Llama and other HuggingFace models
 
 # Optional: AI adapters (install only what you need)
 # Uncomment the adapters you want to use

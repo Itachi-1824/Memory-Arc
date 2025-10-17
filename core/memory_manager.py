@@ -6,16 +6,16 @@ import os
 from collections import defaultdict, deque
 from typing import Any
 
-from memory_system.core.models import MemoryEntry
-from memory_system.core.vector_memory import VectorMemoryManager
-from memory_system.adapters.ai_adapter import AIAdapter
-from memory_system.utils.persistence import save_to_json, load_from_json
-from memory_system.config import (
+from .models import MemoryEntry
+from .vector_memory import VectorMemoryManager
+from adapters.ai_adapter import AIAdapter
+from utils.persistence import save_to_json, load_from_json
+from config import (
     DEFAULT_STM_MAX_LENGTH,
     DEFAULT_STORAGE_PATH,
     MemoryConfig,
 )
-from memory_system.core.processors import MemoryProcessor
+from .processors import MemoryProcessor
 
 logger = logging.getLogger(__name__)
 

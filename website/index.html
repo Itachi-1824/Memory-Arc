@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory-Arc Chat - Infinite Context Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Memory-Arc Chat</h1>
+            <p class="subtitle">Testing Infinite Context Memory System</p>
+        </header>
+
+        <div class="api-config" id="apiConfig">
+            <h3>⚙️ API Configuration</h3>
+            <div class="config-form">
+                <label for="apiKey">Pollinations API Token:</label>
+                <input type="password" id="apiKey" placeholder="Enter your API token">
+                <button onclick="saveConfig()" class="btn-primary">Save & Connect</button>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent" style="display: none;">
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">Total Memories:</span>
+                    <span class="stat-value" id="totalMemories">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Queries:</span>
+                    <span class="stat-value" id="totalQueries">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Avg Latency:</span>
+                    <span class="stat-value" id="avgLatency">0ms</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Cache Hit Rate:</span>
+                    <span class="stat-value" id="cacheHitRate">0%</span>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="system-message">
+                        Welcome! This chat uses the Memory-Arc infinite context system. 
+                        All conversations are stored with semantic search capabilities.
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Type your message here..." 
+                        rows="3"
+                        onkeydown="handleKeyPress(event)"
+                    ></textarea>
+                    <button onclick="sendMessage()" class="btn-send" id="sendBtn">
+                        Send
+                    </button>
+                </div>
+            </div>
+
+            <div class="memory-panel">
+                <h3>📚 Retrieved Memories</h3>
+                <div id="memoryList" class="memory-list">
+                    <p class="empty-state">No memories retrieved yet. Start chatting!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
